@@ -1,0 +1,9 @@
+include base.pug
+
+block content
+    form(method="POST")
+        input(name="email", type="text", requried)
+        input(name="username", type="text", requried)
+        input(name="password", type="text", requried)
+        input(name="name", type="text", requried)
+        input(type="submit", value="register")
