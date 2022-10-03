@@ -1,0 +1,10 @@
+include base.pug
+
+block content
+    form(method="POST", enctype="multipart/form-data")
+        label(for="video") Video File
+        input(type="file", accept="video/*", required, id="video", name="video")
+        input(placeholder="Title", required, type="text", name="title")
+        input(placeholder="Description", required, type="text", name="description")
+        input(placeholder="Keywords (like nature, space, ...)", required, type="text", name="keywords")
+        input(type="submit", value="Upload Your Story!")

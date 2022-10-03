@@ -1,4 +1,13 @@
 include base.pug
 
 block content
-    h1 login!
+    section
+        h1 LOGIN!
+        form(method="POST")
+            input(name="username", type="text", placeholder="Username", required)
+            input(name="password", type="text", placeholder="Password", required)
+            input(type="submit", value="Login")
+        hr
+        div
+            span Don't have an account?
+            a(href="/register") Create one now;
