@@ -1,28 +1,8 @@
-include base.pug
+extends base.pug
+include mixins/video.pug
 
 block content
-    nav
-        ul
-            li
-                a(href="/") Home
-            if loggedIn
-                li
-                    a(href="logout") Log Out
-            else
-                li
-                    a(href="login") Log In
-            
-    aside
-        ul
-            if loggenIn
-                span Welcome!!
-                span #{loggedInUser.name}
-            else
-            li
-                a(href="video/upload") Upload
-            li
-                a(href="like") Like
-            li
-                a(href="user") User
-            li
-                a(href="subscribe") Subscribe
+    each video in videos
+        +video(video)
+    else
+        li nothing    

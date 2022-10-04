@@ -7,14 +7,23 @@ import {
   Delete,
   WatchGet,
 } from "../controllers/videoController.js";
-import { VideoUpload } from "../middlewares.js";
+import { protectorMiddleware, VideoUpload } from "../middlewares.js";
+
 const videoRouter = express.Router();
 
-videoRouter.route(":/id").get(WatchGet);
-videoRouter.route(":/id/edit").get(EditGet).post(EditPost);
-videoRouter.route(":/id/delete").get(Delete);
+videoRouter.route("/:id([0-9a-f]{24})").all(protectorMiddleware).get(WatchGet);
+videoRouter
+  .route("/:id([0-9a-f]{24})/edit")
+  .all(protectorMiddleware)
+  .get(EditGet)
+  .post(EditPost);
+videoRouter
+  .route("/:id([0-9a-f]{24})/delete")
+  .all(protectorMiddleware)
+  .get(Delete);
 videoRouter
   .route("/upload")
+  .all(protectorMiddleware)
   .get(UploadGet)
   .post(VideoUpload.single("video"), UploadPost);
 

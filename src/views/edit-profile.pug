@@ -1,0 +1,10 @@
+include base.pug
+
+block content
+    form(method="POST")
+        input(name="email", type="text", placeholder="Email", required, value=loggedInUser.email)
+        input(name="username", type="text", placeholder="Username", required, value=loggedInUser.username)
+        input(name="name", type="text", placeholder="Name", required, value=loggedInUser.name)
+        input(type="submit", value="Update Profile") 
+        hr
+        a(href="change-password") Change Password
