@@ -1,10 +1,15 @@
 include base.pug
 
 block content
-    section
-        form(method="POST")
-            input(name="email", type="text", placeholder="Email", required)
-            input(name="username", type="text", placeholder="Username", required)
-            input(name="password", type="text", placeholder="Password", required)
-            input(name="name", type="text", placeholder="Name", required)
-            input(type="submit", value="register") 
+
+    form(method="POST")
+        input(name="email", type="text", placeholder="Email", required)
+        input(name="username", type="text", placeholder="Username", required)
+        input(name="password", type="text", placeholder="Password", required)
+        input(name="name", type="text", placeholder="Name", required)
+        input(type="submit", value="register") 
+
+
+    div.auth-switch
+        span Already have an account? 
+        a(href="/login") Log in now &rarr;

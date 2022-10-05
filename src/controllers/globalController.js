@@ -3,7 +3,9 @@ import Video from "../models/Video.js";
 import bcrypt from "bcrypt";
 
 export const Home = async (req, res) => {
-  const videos = await Video.find({}).sort({ createdAt: "desc" });
+  const videos = await Video.find({})
+    .sort({ createdAt: "desc" })
+    .populate("owner");
   return res.render("home", { videos });
 };
 
@@ -51,7 +53,7 @@ export const Search = async (req, res) => {
       title: {
         $regex: new RegExp(keyword, "i"),
       },
-    });
+    }).populate("owner");
   }
   return res.render("search", { videos });
 };

@@ -59,9 +59,15 @@ export const ChangePasswordPost = async (req, res) => {
   return res.redirect("/user/logout");
 };
 
-//Profile
+//Profile = See
 export const Profile = async (req, res) => {
   const { id } = req.params;
-  const user = await User.findById(id).populate("videos");
+  const user = await User.findById(id).populate({
+    path: "videos",
+    populate: {
+      path: "owner",
+      model: "User",
+    },
+  });
   return res.render("profile", { user });
 };

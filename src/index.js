@@ -44,6 +44,7 @@ app.use((req, res, next) => {
 
 //Middleware and Router
 app.use(localsMiddleware);
+app.use("/static", express.static("assets"));
 app.use("/", globalRouter);
 app.use("/video", videoRouter);
 app.use("/user", userRouter);

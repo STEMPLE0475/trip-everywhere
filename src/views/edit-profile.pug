@@ -7,4 +7,5 @@ block content
         input(name="name", type="text", placeholder="Name", required, value=loggedInUser.name)
         input(type="submit", value="Update Profile") 
         hr
-        a(href="change-password") Change Password
+        div.edit-profile__password
+            a(href="change-password") Change Password &rarr;

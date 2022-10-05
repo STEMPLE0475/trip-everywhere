@@ -75,6 +75,16 @@ export const EditPost = async (req, res) => {
 //video delete
 export const Delete = async (req, res) => {
   const { id } = req.params;
+
+  const {
+    user: { _id },
+  } = req.session;
+  const video = await Video.findById(id);
+
+  if (String(video.owner) !== String(_id)) {
+    return res.status(403).redirect("/");
+  }
+
   await Video.findByIdAndRemove(id);
   return res.redirect("/");
 };
