@@ -4,10 +4,12 @@ import morgan from "morgan";
 import globalRouter from "./routers/globalRouter.js";
 import userRouter from "./routers/userRouter.js";
 import videoRouter from "./routers/videoRouter.js";
+import apiRouter from "./routers/apiRouter.js";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import "./models/User.js";
 import "./models/Video.js";
+import "./models/Comments.js";
 import "./db.js";
 import "./models/User.js";
 import { localsMiddleware } from "./middlewares.js";
@@ -17,10 +19,12 @@ const PORT = "4000";
 const app = express();
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
-//upload - Static Files
+//Static Files
 app.use("/uploads", express.static("uploads"));
+app.use("/static", express.static("assets"));
 
 //session with MongoDB
 app.use(
@@ -44,10 +48,11 @@ app.use((req, res, next) => {
 
 //Middleware and Router
 app.use(localsMiddleware);
-app.use("/static", express.static("assets"));
+
 app.use("/", globalRouter);
 app.use("/video", videoRouter);
 app.use("/user", userRouter);
+app.use("/api", apiRouter);
 
 //server Port
 app.listen(PORT, console.log(`@ Server Starting In Port ${PORT} @`));
